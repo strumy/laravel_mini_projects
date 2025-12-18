@@ -61,6 +61,24 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3">
+                            <label for="lang_country" class="col-md-4 col-form-label text-md-end">{{ __('Language & Country') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="lang_country" name="lang_country" class="form-select" @error('lang_country') is-invalid @enderror" aria-label="Lang Country Selector" required autocomplete="lang_country" autofocus>
+                                    <option selected>Select</option>
+                                    @foreach (LangCountry::langSelectorHelper()['available'] as $item)
+                                    <option value="{{ $item['lang_country'] }}">{{ $item['emoji_flag'] }} {{ $item['name'] }} ({{ $item['lang_country'] }})</option>
+                                    @endforeach
+                                </select>
+                                @error('lang_country')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
